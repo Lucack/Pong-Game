@@ -1,31 +1,32 @@
 <Ball>:
     
-    size: 50,50
+    size: "20dp","20dp"
     canvas:
         Ellipse:
             pos: self.pos
             size: self.size
 <Paddle>:
-    size: "55dp", '200dp'
+    size: "40dp", "90dp"
     canvas:
         Color:
             rgba: (1, 0, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
-            
+
+
 <Game>:
     ball: pong_ball
     player1: player_left
     player2: player_right
     canvas:
         Rectangle:
-            pos: self.center_x - 2.5, 0
-            size: 5, self.height
+            pos: self.center_x - 2.5 , 0
+            size: 5 , self.height
             
     Label:
 
-        font_size: 100 
+        font_size: "50dp" 
         center_x: root.width / 4
         top: root.top - 50
         text: str(root.player1.score)
@@ -33,9 +34,9 @@
         
     Label:
 
-        font_size: 100  
+        font_size: "50dp"   
         center_x: root.width * 3 / 4
-        top: root.top - 50
+        top: root.top - 50 
         text: str(root.player2.score)
 
     Ball:
@@ -44,12 +45,12 @@
 
     Paddle:
         id: player_left
-        x: root.x
+        x: 20 + root.x
         center_y: root.center_y
         
     Paddle:
         id: player_right
-        x: root.width - self.width
+        x: root.width - self.width - 20
         center_y: root.center_y
 
         
