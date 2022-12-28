@@ -105,3 +105,4 @@ class MainApp(App):
         return game
 
 MainApp().run()
+# buildozer android debug deploy run
