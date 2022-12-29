@@ -36,20 +36,23 @@ class Game(Widget):
     restart = False
 
     def serve_ball(self):
-    
+        
+        if self.ball.x <= self.x:
+            self.player2.score += 1
+        if self.ball.right >= self.width:
+            self.player1.score += 1
         start = ['-7dp','7dp']
         vx = random.choice(start)
-        vy=random.choice(start)
+        vy = random.choice(start)
         global vel
         vel = [vx,vy]
         self.ball.center = self.center
+        Clock.schedule_once(strt,2)  
         self.ball.velocity = vel
-        restart = True        
-        
 
     def update(self,event):
         self.ball.move()
-
+        
         if (self.ball.y < self.y) or (self.ball.top > self.top):
             self.ball.velocity_y *= -1
         if (self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2)+20)) and (self.ball.center_y < self.player1.center_y+self.player1.height/2 and self.ball.center_y > self.player1.center_y-self.player1.height/2):
@@ -57,15 +60,13 @@ class Game(Widget):
         if (self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player1.width/2)-20)) and (self.ball.center_y < self.player2.center_y+self.player2.height/2 and self.ball.center_y > self.player2.center_y-self.player2.height/2):
             self.ball.velocity_x *= -1
 
-        if self.ball.x < self.x:
-            self.player2.score += 1
-            counter()
-            self.serve_ball()
+        if self.ball.center_x-(self.ball.width/2) < game.x:
+            self.serve_ball
             
-        if self.ball.right > self.width:
-            self.player1.score += 1
-            counter()
-            self.serve_ball()
+            
+        if self.ball.right > game.width-20:
+            self.serve_ball
+            
     
     def on_touch_move(self, touch):
         if touch.x < self.width/3:
@@ -81,24 +82,13 @@ class Game(Widget):
 #     game = Game()
 #     pass
 
-def counter():
-    t0 = time.time()
-    t = time.time()
-    global count
-    count = int(t-t0)
-    times = [0,1]
-    c=-1
-    while count <= 1:
-        t = time.time()
-        count = int(t-t0)
-        if count in times:
-            if count !=c:
-                #print(count)
-                c=count
+def strt(event):
+    pass
 
 class MainApp(App):
 
     def build(self):
+        global game
         game = Game()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0/60.0)
