@@ -54,7 +54,7 @@ class Game(Widget):
             self.ball.velocity_y *= -1
         if (self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2)+20)) and (self.ball.center_y < self.player1.center_y+self.player1.height/2 and self.ball.center_y > self.player1.center_y-self.player1.height/2):
             self.ball.velocity_x *= -1
-        if (self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player1.width/2)-40)) and (self.ball.center_y < self.player2.center_y+self.player2.height/2 and self.ball.center_y > self.player2.center_y-self.player2.height/2):
+        if (self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player1.width/2)-20)) and (self.ball.center_y < self.player2.center_y+self.player2.height/2 and self.ball.center_y > self.player2.center_y-self.player2.height/2):
             self.ball.velocity_x *= -1
 
         if self.ball.x < self.x:
