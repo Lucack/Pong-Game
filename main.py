@@ -73,14 +73,6 @@ class Game(Widget):
         if touch.x > self.width - self.width/3:
             self.player2.center_y = touch.y
 
-# class Menu(Widget):
-#     ball = ObjectProperty(Ball())
-#     player1 = ObjectProperty(Paddle())
-#     player2 = ObjectProperty(Paddle())
-#     text = StringProperty()
-#     game = Game()
-#     pass
-
 def counter():
     t0 = time.time()
     t = time.time()

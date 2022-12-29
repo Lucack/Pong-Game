@@ -6,6 +6,7 @@
             pos: self.pos
             size: self.size
 <Paddle>:
+
     size: "40dp", "90dp"
     canvas:
         Color:
@@ -16,6 +17,7 @@
 
 
 <Game>:
+
     ball: pong_ball
     player1: player_left
     player2: player_right
@@ -40,10 +42,12 @@
         text: str(root.player2.score)
 
     Ball:
+
         id: pong_ball
         center: self.parent.center
 
     Paddle:
+
         id: player_left
         x: 20 + root.x
         center_y: root.center_y
@@ -52,5 +56,4 @@
         id: player_right
         x: root.width - (self.width+20)
         center_y: root.center_y
-
-        
+   
