@@ -13,7 +13,7 @@ class Paddle(Widget):
 
 class Ball(Widget):
     
-    start = ['-12dp','12dp']
+    start = ['-7dp','7dp']
     velocity_x = NumericProperty(random.choice(start))
     velocity_y = NumericProperty(random.choice(start))
     velocity = ReferenceListProperty(velocity_x,velocity_y)
@@ -27,7 +27,7 @@ class Game(Widget):
     player1 = ObjectProperty(Paddle())
     player2 = ObjectProperty(Paddle())
     text = StringProperty()
-    start = ['-12dp','12dp']
+    start = ['-7dp','7dp']
     vx = random.choice(start)
     vy=random.choice(start)
     global vel
@@ -37,7 +37,7 @@ class Game(Widget):
 
     def serve_ball(self):
     
-        start = ['-12dp','12dp']
+        start = ['-7dp','7dp']
         vx = random.choice(start)
         vy=random.choice(start)
         global vel
