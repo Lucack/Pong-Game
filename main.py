@@ -57,33 +57,70 @@ class Game(Widget):
             self.ball.velocity_y *= -1
         
             # ball and player 1
-        if ((self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2))) and (self.ball.center_x-(self.ball.width/2) > self.player1.center_x+(self.player1.width/4)))  and ((self.ball.center_y-self.ball.height/2 < self.player1.center_y+self.player1.height/2 and self.ball.center_y+self.ball.height/2 > self.player1.center_y-self.player1.height/2)):
+        if ((self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2))))  and ((self.ball.center_y < self.player1.center_y+self.player1.height/2 and self.ball.center_y > self.player1.center_y-self.player1.height/2)):
+            # print("Bounce normal")
+            # time.sleep(1)
             self.ball.velocity_x *= -1
-            if (self.ball.velocity_y < 0 and self.ball.velocity_x < 0 and self.ball.center_y > self.player1.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player1.center_y + self.player1.height/2):
-                self.ball.velocity_y *= -1
-            if (self.ball.velocity_y > 0 and self.ball.velocity_x < 0 and self.ball.center_y < self.player1.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player1.center_y - self.player1.height/2):
-                self.ball.velocity_y *= -1
+            # if (self.ball.velocity_y < 0 and self.ball.velocity_x < 0 and self.ball.center_y > self.player1.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player1.center_y + self.player1.height/2):
+            #     time.sleep(1)
+            #     self.ball.velocity_y *= -1
+            # if (self.ball.velocity_y > 0 and self.ball.velocity_x < 0 and self.ball.center_y < self.player1.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player1.center_y - self.player1.height/2):
+            #     time.sleep(1)
+            #     self.ball.velocity_y *= -1
         
 
         if (self.ball.velocity_y < 0 and self.ball.velocity_x < 0 and self.ball.center_y > self.player1.center_y and self.ball.center_x-self.ball.width/2 < self.player1.center_x+self.player1.width/2) and (self.ball.center_y-(self.ball.height/2) < self.player1.center_y + self.player1.height/2):
+            # time.sleep(1)
             self.ball.velocity_y *= -1
+            if (self.ball.center_x > self.player1.center_x+(self.player1.width*0.1)):
+                # print("Teste agora cima, n pode perder")
+                # time.sleep(1)
+                self.ball.velocity_x *= -1
+
         if (self.ball.velocity_y > 0 and self.ball.velocity_x < 0 and self.ball.center_y < self.player1.center_y and self.ball.center_x-self.ball.width/2 < self.player1.center_x+self.player1.width/2) and (self.ball.center_y+(self.ball.height/2) > self.player1.center_y - self.player1.height/2):
+            # time.sleep(1)
             self.ball.velocity_y *= -1
+            if (self.ball.center_x > self.player1.center_x+(self.player1.width*0.1)):
+                # print("Teste agora baixo, n pode perder")
+                # time.sleep(1)
+                self.ball.velocity_x*= -1
         
             # self.ball.velocity_x *= -1
 
             # ball and player 2
-        if ((self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player2.width/2))) and (self.ball.center_x+(self.ball.width/2) < self.player2.center_x-(self.player2.width/4))) and (self.ball.center_y-self.ball.height/2 < self.player2.center_y+self.player2.height/2 and self.ball.center_y+self.ball.height/2 > self.player2.center_y-self.player2.height/2):
+        if ((self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player2.width/2)))) and (self.ball.center_y < self.player2.center_y+self.player2.height/2 and self.ball.center_y > self.player2.center_y-self.player2.height/2):
+            print("Bounce normal")
+            # time.sleep(1)
             self.ball.velocity_x *= -1
-            if (self.ball.velocity_y < 0 and self.ball.velocity_x > 0 and self.ball.center_y > self.player2.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player2.center_y + self.player2.height/2):
-                self.ball.velocity_y *= -1
-            if (self.ball.velocity_y > 0 and self.ball.velocity_x > 0 and self.ball.center_y < self.player2.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player2.center_y - self.player2.height/2):
-                self.ball.velocity_y *= -1
+            # if (self.ball.velocity_y < 0 and self.ball.velocity_x > 0 and self.ball.center_y > self.player2.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player2.center_y + self.player2.height/2):
+            #     print("Bounce na risca de cima")
+            #     time.sleep(1)
+            #     self.ball.velocity_y *= -1
+            # if (self.ball.velocity_y > 0 and self.ball.velocity_x > 0 and self.ball.center_y < self.player2.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player2.center_y - self.player2.height/2):
+            #     print("Bounce na risca debaixo")
+            #     time.sleep(1)
+            #     self.ball.velocity_y *= -1
         
         if (self.ball.velocity_y < 0 and self.ball.velocity_x > 0 and self.ball.center_y > self.player2.center_y and self.ball.center_x+(self.ball.width/2) > self.player2.center_x-(self.player2.width/2)) and (self.ball.center_y-(self.ball.height/2) < self.player2.center_y + self.player2.height/2):
+            # print("Bounce lateral alta perde")
+            # time.sleep(1)
             self.ball.velocity_y *= -1
+            if (self.ball.center_x < self.player2.center_x-(self.player2.width*0.1)):
+                # print("Teste agora cima, n pode perder")
+                # time.sleep(1)
+                self.ball.velocity_x *= -1
+
+
         if (self.ball.velocity_y > 0 and self.ball.velocity_x > 0 and self.ball.center_y < self.player2.center_y and self.ball.center_x+(self.ball.width/2) > self.player2.center_x-(self.player2.width/2)) and (self.ball.center_y+(self.ball.height/2) > self.player2.center_y - self.player2.height/2):
+            # print("Bounce lateral baixo perde")
+            # time.sleep(1)
             self.ball.velocity_y *= -1
+            if (self.ball.center_x < self.player2.center_x-(self.player2.width*0.1)):
+                # print("Teste agora baixo, n pode perder")
+                # time.sleep(1)
+                self.ball.velocity_x*= -1
+            
+        
 
         if self.ball.x < self.x:
             self.player2.score += 1
