@@ -6,6 +6,9 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 import random
 import time
+from kivy import platform,Config
+if platform != 'android':
+    Config.set('graphics', 'resizable', False)
 
 class Paddle(Widget):
 
@@ -54,22 +57,33 @@ class Game(Widget):
             self.ball.velocity_y *= -1
         
             # ball and player 1
-        if (self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2)+20)) and ((self.ball.center_y-self.ball.height/2 < self.player1.center_y+self.player1.height/2 and self.ball.center_y+self.ball.height/2 > self.player1.center_y-self.player1.height/2)):
+        if ((self.ball.center_x-(self.ball.width/2) < (self.player1.center_x+(self.player1.width/2))) and (self.ball.center_x-(self.ball.width/2) > self.player1.center_x+(self.player1.width/4)))  and ((self.ball.center_y-self.ball.height/2 < self.player1.center_y+self.player1.height/2 and self.ball.center_y+self.ball.height/2 > self.player1.center_y-self.player1.height/2)):
             self.ball.velocity_x *= -1
             if (self.ball.velocity_y < 0 and self.ball.velocity_x < 0 and self.ball.center_y > self.player1.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player1.center_y + self.player1.height/2):
                 self.ball.velocity_y *= -1
             if (self.ball.velocity_y > 0 and self.ball.velocity_x < 0 and self.ball.center_y < self.player1.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player1.center_y - self.player1.height/2):
                 self.ball.velocity_y *= -1
         
+
+        if (self.ball.velocity_y < 0 and self.ball.velocity_x < 0 and self.ball.center_y > self.player1.center_y and self.ball.center_x-self.ball.width/2 < self.player1.center_x+self.player1.width/2) and (self.ball.center_y-(self.ball.height/2) < self.player1.center_y + self.player1.height/2):
+            self.ball.velocity_y *= -1
+        if (self.ball.velocity_y > 0 and self.ball.velocity_x < 0 and self.ball.center_y < self.player1.center_y and self.ball.center_x-self.ball.width/2 < self.player1.center_x+self.player1.width/2) and (self.ball.center_y+(self.ball.height/2) > self.player1.center_y - self.player1.height/2):
+            self.ball.velocity_y *= -1
+        
             # self.ball.velocity_x *= -1
 
             # ball and player 2
-        if (self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player1.width/2)-20)) and (self.ball.center_y-self.ball.height/2 < self.player2.center_y+self.player2.height/2 and self.ball.center_y+self.ball.height/2 > self.player2.center_y-self.player2.height/2):
+        if ((self.ball.center_x+(self.ball.width/2) > (self.player2.center_x-(self.player2.width/2))) and (self.ball.center_x+(self.ball.width/2) < self.player2.center_x-(self.player2.width/4))) and (self.ball.center_y-self.ball.height/2 < self.player2.center_y+self.player2.height/2 and self.ball.center_y+self.ball.height/2 > self.player2.center_y-self.player2.height/2):
             self.ball.velocity_x *= -1
             if (self.ball.velocity_y < 0 and self.ball.velocity_x > 0 and self.ball.center_y > self.player2.center_y) and (self.ball.center_y-(self.ball.height/2) < self.player2.center_y + self.player2.height/2):
                 self.ball.velocity_y *= -1
             if (self.ball.velocity_y > 0 and self.ball.velocity_x > 0 and self.ball.center_y < self.player2.center_y) and (self.ball.center_y+(self.ball.height/2) > self.player2.center_y - self.player2.height/2):
                 self.ball.velocity_y *= -1
+        
+        if (self.ball.velocity_y < 0 and self.ball.velocity_x > 0 and self.ball.center_y > self.player2.center_y and self.ball.center_x+(self.ball.width/2) > self.player2.center_x-(self.player2.width/2)) and (self.ball.center_y-(self.ball.height/2) < self.player2.center_y + self.player2.height/2):
+            self.ball.velocity_y *= -1
+        if (self.ball.velocity_y > 0 and self.ball.velocity_x > 0 and self.ball.center_y < self.player2.center_y and self.ball.center_x+(self.ball.width/2) > self.player2.center_x-(self.player2.width/2)) and (self.ball.center_y+(self.ball.height/2) > self.player2.center_y - self.player2.height/2):
+            self.ball.velocity_y *= -1
 
         if self.ball.x < self.x:
             self.player2.score += 1
